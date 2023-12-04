@@ -1,0 +1,104 @@
+[gd_scene load_steps=7 format=3 uid="uid://bj3u3wthdf12j"]
+
+[ext_resource type="FontFile" uid="uid://b3ue6jyjftt70" path="res://MISC/UI/FONTS/comic-sans-ms-font-family/design.graffiti.comicsansmsgras.ttf" id="1_6w5tm"]
+[ext_resource type="FontFile" uid="uid://c6apg4mpx81sb" path="res://MISC/UI/FONTS/comic-sans-ms-font-family/design.graffiti.comicsansms.ttf" id="1_7vwhb"]
+[ext_resource type="AudioStream" uid="uid://k2n0s1p1xvk7" path="res://GAME/INTRO/AC_Bouncy_Bubble_01v1.wav" id="2_jsri3"]
+
+[sub_resource type="GDScript" id="GDScript_1vteo"]
+script/source = "extends Node2D
+
+var twn : Tween
+
+@onready var display : RichTextLabel = $display
+@onready var timer : Timer = $Timer
+
+
+func _physics_process(delta):
+	display.global_position.x = clamp(display.global_position.x,0,1920-display.size.x)
+	if display.global_position.x in range(0,1920-display.size.x):
+		display.global_position.x = lerp(to_local(display.global_position).x,-(display.size.x/2.0),0.1)
+
+func popup(text:String):
+	show()
+	$text.text = text
+	$text/Timer.start()
+	if twn:
+		twn.kill()
+	twn = create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	twn.tween_property(self,\"scale\",Vector2.ONE,1.0)
+
+func unpop():
+	if twn:
+		twn.kill()
+	twn = create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	twn.tween_property(self,\"scale\",Vector2.ZERO,0.25)
+	twn.tween_callback(hide)
+"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3j5md"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wxhig"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 1
+
+[node name="Bulle" type="Node2D"]
+script = SubResource("GDScript_1vteo")
+
+[node name="display" type="RichTextLabel" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -26.0
+offset_right = 128.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("1_7vwhb")
+theme_override_fonts/bold_font = ExtResource("1_6w5tm")
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3j5md")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3j5md")
+bbcode_enabled = true
+text = "what the fuck man ?
+c chelou"
+fit_content = true
+
+[node name="bg" type="Panel" parent="display"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wxhig")
+
+[node name="arrow" type="Polygon2D" parent="."]
+show_behind_parent = true
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-24, -8, 24, -8, 0, 16)
+
+[node name="pop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_jsri3")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="unpop"]

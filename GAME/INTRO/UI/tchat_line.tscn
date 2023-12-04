@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dauvy7d0f1w16"]
+
+[ext_resource type="FontFile" uid="uid://b6b8dkk8r26q5" path="res://MISC/UI/FONTS/comic-sans-ms-font-family/COMIC.TTF" id="1_otejf"]
+[ext_resource type="FontFile" uid="uid://b3ue6jyjftt70" path="res://MISC/UI/FONTS/comic-sans-ms-font-family/design.graffiti.comicsansmsgras.ttf" id="2_ogn7g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4nip1"]
+
+[sub_resource type="GDScript" id="GDScript_bur8v"]
+script/source = "extends RichTextLabel
+
+func set_line(phrase:String,pseudo:String=\"Inconnu\"):
+	text = \"[b]\"+pseudo+\"[/b] : \"+ phrase
+"
+
+[node name="line" type="RichTextLabel"]
+size_flags_horizontal = 3
+focus_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("1_otejf")
+theme_override_fonts/bold_font = ExtResource("2_ogn7g")
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4nip1")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4nip1")
+bbcode_enabled = true
+fit_content = true
+script = SubResource("GDScript_bur8v")

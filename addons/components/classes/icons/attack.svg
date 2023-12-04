@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="16"
+   height="16"
+   viewBox="0 0 4.2333332 4.2333335"
+   version="1.1"
+   id="svg1025"
+   sodipodi:docname="attack.svg"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   inkscape:export-filename="D:\GAMES\GODOT 4\GODOT4PROJECT\EXPERIMENTS\Components\addons\components\classes\icons\spritesheet\attack.png"
+   inkscape:export-xdpi="768"
+   inkscape:export-ydpi="768"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1027"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="px"
+     showgrid="false"
+     units="px"
+     inkscape:zoom="45.254834"
+     inkscape:cx="6.8500969"
+     inkscape:cy="7.8555144"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showguides="false" />
+  <defs
+     id="defs1022" />
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="rect1108"
+       style="color:#000000;fill:#f5db66;fill-opacity:1;fill-rule:evenodd;stroke-width:0.27746;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stroke:none"
+       d="m 0.31119211,0.26477875 c -0.0663508,0.00267 -0.054286,0.0612377 -0.0113673,0.22219417 L 0.3680287,0.74275458 2.9019766,3.2768459 2.6219272,3.5569138 c -0.051817,0.051821 -0.051817,0.1352368 0,0.1870566 l 0.1860107,0.186023 c 0.051816,0.051821 0.1352268,0.051821 0.1870438,0 l 0.2800495,-0.280068 0.1095397,0.10903 v 5.167e-4 l 0.1374412,0.1369336 c 0.070525,0.070529 0.1842067,0.070529 0.2547313,0 L 3.8960999,3.7770412 c 0.070525,-0.070529 0.070525,-0.1842187 0,-0.2547483 L 3.7586589,3.3848426 3.6491194,3.2758123 3.9296854,2.9952275 c 0.051817,-0.05182 0.051817,-0.1352367 0,-0.1870563 L 3.7436748,2.6221482 c -0.051817,-0.051821 -0.1352268,-0.051821 -0.1870442,0 L 3.2760645,2.9027329 0.74263353,0.36812487 0.48686883,0.29991643 C 0.40202784,0.27729067 0.34594734,0.26338021 0.31119211,0.26477875 Z m 3.60086709,0 c -0.035215,0.001215 -0.088731,0.0145688 -0.1658594,0.0351377 L 3.4904352,0.36812487 2.3036589,1.55549 2.6777471,1.929603 3.86504,0.74275458 3.933244,0.48697292 C 3.978206,0.31835182 3.989534,0.26210526 3.9120592,0.26477875 Z M 1.5554829,2.3037159 0.95700423,2.9027329 0.67643812,2.6221482 c -0.0518168,-0.051821 -0.13522728,-0.051821 -0.18704401,0 l -0.18601063,0.186023 c -0.0518168,0.05182 -0.0518168,0.1352366 0,0.1870563 L 0.58394949,3.2758123 0.47440993,3.3848426 0.33696873,3.5222929 c -0.070525,0.070529 -0.0705251,0.1842187 0,0.2547483 l 0.11935682,0.1193645 c 0.0705246,0.070529 0.18420617,0.070529 0.25473122,0 L 0.84849803,3.7594721 v -5.167e-4 l 0.1095395,-0.10903 0.28004937,0.280068 c 0.051817,0.051821 0.1352273,0.051821 0.1870441,0 l 0.1860105,-0.186023 c 0.051817,-0.05182 0.051817,-0.1352364 0,-0.1870566 L 1.3310922,3.2768459 1.9295709,2.677829 Z"
+       sodipodi:nodetypes="scccccccccccssscccccsccsssscccccscccccccccssccccccccccc" />
+  </g>
+</svg>

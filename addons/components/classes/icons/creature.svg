@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg2"
+   width="16"
+   height="16"
+   viewBox="0 0 16 16"
+   sodipodi:docname="creature.svg"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   inkscape:export-filename="D:\GAMES\GODOT 4\GODOT4PROJECT\EXPERIMENTS\Components\addons\components\classes\icons\spritesheet\creature.png"
+   inkscape:export-xdpi="768"
+   inkscape:export-ydpi="768"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs6" />
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="40.616215"
+     inkscape:cx="5.2688317"
+     inkscape:cy="8.161765"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g8" />
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Image"
+     id="g8">
+    <path
+       id="path3371"
+       style="fill:#e5e5e5;fill-opacity:1;fill-rule:evenodd;stroke-width:0.194203;stroke-linecap:round;stroke-linejoin:round"
+       d="M 8,1 C 4.1340068,1 1,4.1340068 1,8 c 0,3.865993 3.1340067,7 7,7 3.865993,0 7,-3.134007 7,-7 C 15,4.1340068 11.865993,1 8,1 Z M 8.095703,2.9335938 A 2,2 0 0 1 9.732422,3.9316406 2,2 0 0 1 9,6.6640625 2,2 0 0 1 6.2675781,5.9316406 2,2 0 0 1 6.9999999,3.1992188 2,2 0 0 1 8.095703,2.9335938 Z m 3.13086,5.1972656 a 2,2 0 0 1 1.636718,0.9980466 2,2 0 0 1 -0.732422,2.730469 2,2 0 0 1 -2.730468,-0.730469 2,2 0 0 1 0.730468,-2.7324216 2,2 0 0 1 1.095704,-0.265625 z M 4.9628906,8.2832031 A 2,2 0 0 1 6.5996094,9.279297 2,2 0 0 1 5.8691406,12.011719 2,2 0 0 1 3.1367188,11.279297 2,2 0 0 1 3.8691406,8.5488281 a 2,2 0 0 1 1.09375,-0.265625 z" />
+    <g
+       id="g5593"
+       transform="translate(0,-0.39393134)" />
+  </g>
+</svg>

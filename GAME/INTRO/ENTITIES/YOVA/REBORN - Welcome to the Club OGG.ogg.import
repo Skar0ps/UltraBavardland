@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c5ap5rm203wyb"
+path="res://.godot/imported/REBORN - Welcome to the Club OGG.ogg-8f7d74501af1feb7b7cd2afb90f6159b.oggvorbisstr"
+
+[deps]
+
+source_file="res://GAME/INTRO/ENTITIES/YOVA/REBORN - Welcome to the Club OGG.ogg"
+dest_files=["res://.godot/imported/REBORN - Welcome to the Club OGG.ogg-8f7d74501af1feb7b7cd2afb90f6159b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

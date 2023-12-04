@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   height="16"
+   viewBox="0 0 16 16"
+   width="16"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="Shadow2D.svg"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     id="namedview6"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="15.865708"
+     inkscape:cx="-4.2859731"
+     inkscape:cy="10.746447"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4" />
+  <g
+     id="circle1117"
+     style="stroke:none"
+     transform="matrix(1.2,0,0,1.2,-2.8,-2.8)">
+    <path
+       id="path6391"
+       style="color:#000000;fill:#8da5f3;stroke-width:2.39987;-inkscape-stroke:none"
+       d="M 8.3222656 2.0097656 L 13.990234 7.6777344 C 13.826548 4.6339697 11.36603 2.173452 8.3222656 2.0097656 z M 6.40625 2.21875 C 5.6423961 2.4308444 4.9386943 2.7903142 4.328125 3.265625 L 12.736328 11.671875 C 13.211271 11.061527 13.569266 10.357205 13.78125 9.59375 L 6.40625 2.21875 z M 3.265625 4.328125 C 2.7903142 4.9386943 2.4308444 5.6423961 2.21875 6.40625 L 9.5957031 13.78125 C 10.359364 13.56895 11.06346 13.209776 11.673828 12.734375 L 3.265625 4.328125 z M 2.0097656 8.3203125 C 2.1725421 11.365623 4.6343767 13.827458 7.6796875 13.990234 L 2.0097656 8.3203125 z "
+       transform="matrix(0.83333333,0,0,0.83333333,2.3333333,2.3333333)" />
+  </g>
+  <circle
+     cx="7.0000024"
+     cy="7.0000024"
+     fill="none"
+     stroke-width="1.33333"
+     stroke="#8da5f3"
+     id="circle4351"
+     r="4.0000572"
+     style="stroke-width:1.99989;stroke-miterlimit:4;stroke-dasharray:none;fill:none;fill-opacity:1;stroke:none" />
+</svg>

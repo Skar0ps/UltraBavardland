@@ -1,0 +1,1879 @@
+[gd_scene load_steps=90 format=3 uid="uid://drtlwp8p1880y"]
+
+[ext_resource type="Texture2D" uid="uid://bg1ej2nguk630" path="res://GAME/INTRO/fond.jpg" id="1_360la"]
+[ext_resource type="PackedScene" uid="uid://bb5c27jb48aq3" path="res://GAME/INTRO/ENTITIES/PLAYER/Blabla.tscn" id="3_owos5"]
+[ext_resource type="FontFile" uid="uid://b3ue6jyjftt70" path="res://MISC/UI/FONTS/comic-sans-ms-font-family/design.graffiti.comicsansmsgras.ttf" id="4_ox0xd"]
+[ext_resource type="AudioStream" uid="uid://ddhbhpf8dyij8" path="res://GAME/INTRO/ENTITIES/YOVA/entree_epique.wav" id="5_4ot64"]
+[ext_resource type="Script" path="res://MISC/SYSTEME_DIALOGUE/PNJ.gd" id="5_if6s6"]
+[ext_resource type="Texture2D" uid="uid://nf6fampqvy3a" path="res://GAME/INTRO/ENTITIES/YOVA/sprites/alien.jpg" id="6_478pa"]
+[ext_resource type="Script" path="res://GAME/INTRO/premium_button.gd" id="6_cwkna"]
+[ext_resource type="Texture2D" uid="uid://cdfa5a5sleeq6" path="res://GAME/MISC/VFX/sprites/particles/Rotated/trace_01_rotated.png" id="6_emy5s"]
+[ext_resource type="AudioStream" uid="uid://km0mfdunkoe7" path="res://GAME/INTRO/Ambience_Wind_Mountain_01_Loop.wav" id="6_lbbbv"]
+[ext_resource type="Texture2D" uid="uid://3u36aht8bdw3" path="res://GAME/INTRO/UI/icones/cadenas.svg" id="6_ootky"]
+[ext_resource type="Texture2D" uid="uid://dii8vuqhxy6il" path="res://GAME/INTRO/Accueil.png" id="6_rom55"]
+[ext_resource type="Texture2D" uid="uid://dm1q58afpk1sb" path="res://GAME/MISC/VFX/sprites/particles/star_09.png" id="7_jp4d2"]
+[ext_resource type="Script" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" id="7_uecqf"]
+[ext_resource type="Script" path="res://MISC/SYSTEME_DIALOGUE/Line.gd" id="8_58wok"]
+[ext_resource type="Texture2D" uid="uid://wrapjsmji4q" path="res://GAME/MISC/VFX/sprites/light/flare/flare01.png" id="8_afjwg"]
+[ext_resource type="AudioStream" uid="uid://bj5cvuhvf6hpe" path="res://GAME/INTRO/UI/SFX/Dark Fantasy Studio-Interface-53.wav" id="8_vmvmx"]
+[ext_resource type="AudioStream" uid="uid://tgupsb8mbgtm" path="res://GAME/INTRO/UI/SFX/Dark Fantasy Studio-Interface-55.wav" id="9_kg48v"]
+[ext_resource type="Script" path="res://MISC/SYSTEME_DIALOGUE/Speaker.gd" id="9_wwvqe"]
+[ext_resource type="AudioStream" uid="uid://dq2mo6i4wkx64" path="res://GAME/INTRO/UI/SFX/Dark Fantasy Studio-Interface-77.wav" id="10_bcdic"]
+[ext_resource type="Script" path="res://MISC/SYSTEME_DIALOGUE/conversation.gd" id="10_hxcuo"]
+[ext_resource type="PackedScene" uid="uid://bj3u3wthdf12j" path="res://MISC/SYSTEME_DIALOGUE/BULLES/bulle_dialogue.tscn" id="12_pwjly"]
+
+[sub_resource type="GDScript" id="GDScript_br4hs"]
+script/source = "extends Area2D
+
+func _on_body_entered(body):
+	if body.is_in_group(\"player\"):
+		body.teleport(position)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ankc"]
+size = Vector2(580.75, 1272)
+
+[sub_resource type="Resource" id="Resource_03int"]
+script = ExtResource("9_wwvqe")
+name = ""
+color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_15oy6"]
+script = ExtResource("8_58wok")
+conditions = {}
+speaker = SubResource("Resource_03int")
+text = "Salut"
+
+[sub_resource type="Resource" id="Resource_ax52f"]
+script = ExtResource("8_58wok")
+conditions = {
+"has_killed_god": false
+}
+text = "Comment ça va ?"
+
+[sub_resource type="Resource" id="Resource_nxp2r"]
+script = ExtResource("8_58wok")
+conditions = {}
+text = "C'est la fin de la conversation"
+
+[sub_resource type="Resource" id="Resource_xu541"]
+script = ExtResource("10_hxcuo")
+conditions = {}
+one_shot = true
+lines = Array[ExtResource("8_58wok")]([SubResource("Resource_15oy6"), SubResource("Resource_ax52f"), SubResource("Resource_nxp2r")])
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_phxkt"]
+radius = 48.0
+height = 128.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4ha4o"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_4rcqe"]
+offsets = PackedFloat32Array(0, 0.252, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.984314, 1, 0.992157, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n7uit"]
+gradient = SubResource("Gradient_4rcqe")
+
+[sub_resource type="Curve" id="Curve_rkm0w"]
+max_value = 512.0
+_data = [Vector2(0, 0), 0.0, -86.2921, 0, 0, Vector2(1, 512), 1098.26, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6rd7m"]
+curve = SubResource("Curve_rkm0w")
+
+[sub_resource type="Curve" id="Curve_2gvw5"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.344762, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_lj1dj"]
+curve = SubResource("Curve_2gvw5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jaoot"]
+lifetime_randomness = 0.5
+emission_shape = 3
+emission_box_extents = Vector3(768, 352, 1)
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 4.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 512.0
+initial_velocity_max = 720.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_min = 512.0
+linear_accel_max = 512.0
+damping_curve = SubResource("CurveTexture_6rd7m")
+scale_min = 0.01
+scale_max = 0.33
+scale_curve = SubResource("CurveTexture_lj1dj")
+color_ramp = SubResource("GradientTexture1D_n7uit")
+
+[sub_resource type="Environment" id="Environment_mpdup"]
+background_mode = 3
+glow_enabled = true
+glow_normalized = true
+glow_blend_mode = 1
+adjustment_enabled = true
+adjustment_contrast = 1.1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a6df8"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_wxjdu"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.506667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3228d"]
+curve = SubResource("Curve_wxjdu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rxj2u"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_max = 180.0
+scale_min = 0.0
+scale_curve = SubResource("CurveTexture_3228d")
+
+[sub_resource type="Shader" id="Shader_levys"]
+code = "/*
+	Camera Shake Effect Shader by @Near
+
+	MIT License
+*/
+
+shader_type canvas_item;
+uniform float ShakeStrength = 0;
+uniform vec2 FactorA  = vec2(100.0,100.0);
+uniform vec2 FactorB  = vec2(1.0,1.0);
+uniform vec2 magnitude;
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+
+void fragment() {
+    vec2 uv = SCREEN_UV;
+	uv -= 0.5;
+    uv *= 1.0 - 2.0 * magnitude.x;
+    uv += 0.5;
+	vec2 dt = vec2(0.0, 0.0);
+	dt.x = sin(TIME * FactorA.x+FactorB.x) * magnitude.x;
+	dt.y = cos(TIME *FactorA.y+ FactorB.y) * magnitude.y;
+	COLOR = texture(SCREEN_TEXTURE,uv + (dt*ShakeStrength));
+}
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2hqph"]
+shader = SubResource("Shader_levys")
+shader_parameter/ShakeStrength = 1.0
+shader_parameter/FactorA = Vector2(32, 32)
+shader_parameter/FactorB = Vector2(16, 16)
+shader_parameter/magnitude = Vector2(0, 0)
+
+[sub_resource type="Shader" id="Shader_o1t34"]
+code = "/*
+Shader from Godot Shaders - the free shader library.
+godotshaders.com/shader/god-rays
+
+Feel free to use, improve and change this shader according to your needs
+and consider sharing the modified result on godotshaders.com.
+*/
+
+shader_type canvas_item;
+
+render_mode blend_add;
+
+uniform float angle = -0.3;
+uniform float position = -0.2;
+uniform float spread : hint_range(0.0, 1.0) = 0.5;
+uniform float cutoff : hint_range(-1.0, 1.0) = 0.1;
+uniform float falloff : hint_range(0.0, 1.0) = 0.2;
+uniform float edge_fade : hint_range(0.0, 1.0) = 0.15;
+
+uniform float speed = 1.0;
+uniform float ray1_density = 8.0;
+uniform float ray2_density = 30.0;
+uniform float ray2_intensity : hint_range(0.0, 1.0) = 0.3;
+
+uniform vec4 color : source_color = vec4(1.0, 0.9, 0.65, 0.8);
+
+uniform bool hdr = false;
+uniform float seed = 5.0;
+
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+
+// Random and noise functions from Book of Shader's chapter on Noise.
+float random(vec2 _uv) {
+    return fract(sin(dot(_uv.xy,
+                         vec2(12.9898, 78.233))) *
+        43758.5453123);
+}
+
+float noise (in vec2 uv) {
+    vec2 i = floor(uv);
+    vec2 f = fract(uv);
+
+    // Four corners in 2D of a tile
+    float a = random(i);
+    float b = random(i + vec2(1.0, 0.0));
+    float c = random(i + vec2(0.0, 1.0));
+    float d = random(i + vec2(1.0, 1.0));
+
+
+    // Smooth Interpolation
+
+    // Cubic Hermine Curve. Same as SmoothStep()
+    vec2 u = f * f * (3.0-2.0 * f);
+
+    // Mix 4 coorners percentages
+    return mix(a, b, u.x) +
+            (c - a)* u.y * (1.0 - u.x) +
+            (d - b) * u.x * u.y;
+}
+
+mat2 rotate(float _angle){
+    return mat2(vec2(cos(_angle), -sin(_angle)),
+                vec2(sin(_angle), cos(_angle)));
+}
+
+vec4 screen(vec4 base, vec4 blend){
+	return 1.0 - (1.0 - base) * (1.0 - blend);
+}
+
+void fragment()
+{
+	
+	// Rotate, skew and move the UVs
+	vec2 transformed_uv = ( rotate(angle) * (UV - position) )  / ( (UV.y + spread) - (UV.y * spread) );
+	
+	// Animate the ray according the the new transformed UVs
+	vec2 ray1 = vec2(transformed_uv.x * ray1_density + sin(TIME * 0.1 * speed) * (ray1_density * 0.2) + seed, 1.0);
+	vec2 ray2 = vec2(transformed_uv.x * ray2_density + sin(TIME * 0.2 * speed) * (ray1_density * 0.2) + seed, 1.0);
+	
+	// Cut off the ray's edges
+	float cut = step(cutoff, transformed_uv.x) * step(cutoff, 1.0 - transformed_uv.x);
+	ray1 *= cut;
+	ray2 *= cut;
+	
+	// Apply the noise pattern (i.e. create the rays)
+	float rays;
+	
+	if (hdr){
+		// This is not really HDR, but check this to not clamp the two merged rays making 
+		// their values go over 1.0. Can make for some nice effect
+		rays = noise(ray1) + (noise(ray2) * ray2_intensity);
+	}
+	else{
+		 rays = clamp(noise(ray1) + (noise(ray2) * ray2_intensity), 0., 1.);
+	}
+	
+	// Fade out edges
+	rays *= smoothstep(0.0, falloff, (1.0 - UV.y)); // Bottom
+	rays *= smoothstep(0.0 + cutoff, edge_fade + cutoff, transformed_uv.x); // Left
+	rays *= smoothstep(0.0 + cutoff, edge_fade + cutoff, 1.0 - transformed_uv.x); // Right
+	
+	// Color to the rays
+	vec3 shine = vec3(rays) * color.rgb;
+
+	// Try different blending modes for a nicer effect. \"Screen\" is included in the code,
+	// but take a look at https://godotshaders.com/snippet/blending-modes/ for more.
+	// With \"Screen\" blend mode:
+	shine = screen(texture(SCREEN_TEXTURE, SCREEN_UV), vec4(color)).rgb;
+	
+	COLOR = vec4(shine, rays * color.a);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nm1gy"]
+shader = SubResource("Shader_o1t34")
+shader_parameter/angle = 0.385
+shader_parameter/position = 0.25
+shader_parameter/spread = 0.33
+shader_parameter/cutoff = 1.0
+shader_parameter/falloff = 0.2
+shader_parameter/edge_fade = 0.15
+shader_parameter/speed = 4.0
+shader_parameter/ray1_density = 8.0
+shader_parameter/ray2_density = 30.0
+shader_parameter/ray2_intensity = 0.3
+shader_parameter/color = Color(0, 0, 0, 0.8)
+shader_parameter/hdr = true
+shader_parameter/seed = 2.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1sxok"]
+light_mode = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dmfxo"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vj6pi"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(1, 1, 1, 1)
+border_width_right = 2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l5th3"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="GDScript" id="GDScript_qqi4i"]
+script/source = "extends VBoxContainer
+
+signal line_added()
+
+const line_scene = preload(\"res://GAME/INTRO/UI/tchat_line.tscn\")
+
+func add_line(phrase:String,pseudo:String=\"Inconnu\"):
+	if phrase.strip_edges() == \"\" : return
+	
+	var new_line = line_scene.instantiate()
+	new_line.set_line(phrase,pseudo)
+	add_child(new_line)
+	line_added.emit()
+	print(\"LINE ADDED\")
+"
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_kcp2i"]
+color = Color(0.8, 0.8, 0.8, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kbi46"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1rpi4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kdbfb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xu46k"]
+content_margin_left = 24.0
+content_margin_top = 8.0
+content_margin_right = 24.0
+content_margin_bottom = 8.0
+bg_color = Color(1, 0.0196078, 0.403922, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uw2r7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j3h61"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_26fao"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vfv72"]
+content_margin_top = 8.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+bg_color = Color(1, 1, 1, 1)
+border_width_right = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2my73"]
+content_margin_bottom = 8.0
+draw_center = false
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s08dv"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.8, 0.8, 0.8, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6, 0.6, 0.6, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxeni"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.94902, 0.94902, 0.94902, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6, 0.6, 0.6, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y0gjr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gokvi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mnykd"]
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j4uvb"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_08i0t"]
+color = Color(0.8, 0.8, 0.8, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 2
+vertical = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1vojn"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cptg8"]
+content_margin_left = 24.0
+content_margin_top = 12.0
+content_margin_right = 24.0
+content_margin_bottom = 12.0
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.0196078, 0.403922, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iqxr5"]
+content_margin_left = 24.0
+content_margin_top = 12.0
+content_margin_right = 24.0
+content_margin_bottom = 12.0
+bg_color = Color(1, 0.0196078, 0.403922, 1)
+border_color = Color(1, 0.0196078, 0.403922, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gfsst"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q7v61"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5jlvu"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oyv28"]
+bg_color = Color(1, 0.0196078, 0.403922, 1)
+draw_center = false
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(1, 0.0196078, 0.403922, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_304ba"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iutot"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qvwoo"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q5y6e"]
+bg_color = Color(1, 0.192157, 0.509804, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+expand_margin_left = 8.0
+expand_margin_top = 49.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="Theme" id="Theme_kq0m2"]
+default_font_size = 48
+AcceptDialog/styles/panel = SubResource("StyleBoxFlat_5jlvu")
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/styles/focus = SubResource("StyleBoxFlat_oyv28")
+Button/styles/hover = SubResource("StyleBoxFlat_304ba")
+Button/styles/normal = SubResource("StyleBoxFlat_iutot")
+PopupPanel/styles/panel = SubResource("StyleBoxFlat_qvwoo")
+Window/colors/title_color = Color(0, 0, 0, 1)
+Window/font_sizes/title_font_size = 24
+Window/styles/embedded_border = SubResource("StyleBoxFlat_q5y6e")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l81ub"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xx0m"]
+bg_color = Color(1, 0.0901961, 0.447059, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ixbtr"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_3xryp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Payed/VBoxContainer/ProgressBar:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Payed:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_46hmu"]
+resource_name = "error"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Payed/VBoxContainer/ProgressBar:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [0.0, 100.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Payed:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lsiqc"]
+_data = {
+"RESET": SubResource("Animation_3xryp"),
+"error": SubResource("Animation_46hmu")
+}
+
+[sub_resource type="Animation" id="Animation_2s6co"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VFX/epic:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VFX/CanvasModulate:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VFX/WorldEnvironment:environment:glow_bloom")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VFX/center:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("VFX/PointLight2D:enabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("VFX/wind:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("VFX/PointLight2D:energy")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("VFX/center:process_material:scale_max")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("VFX/GodRays:material:shader_parameter/color")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.8)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("VFX/GodRays:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("VFX/GodRays:material:shader_parameter/cutoff")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("VFX/PointLight2D:texture_scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [4.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("VFX/BLANK:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("VFX/BLANK:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Ambience:volume_db")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("VFX/wind:amount")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("VFX/ColorRect:material:shader_parameter/magnitude")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Ambience:playing")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("STAGE/Yova:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_wjd10"]
+resource_name = "entree_yova"
+length = 16.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VFX/epic:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 14.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VFX/CanvasModulate:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4, 15),
+"transitions": PackedFloat32Array(0.5, 0, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.501961, 0.501961, 0.501961, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VFX/WorldEnvironment:environment:glow_bloom")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 4, 15),
+"transitions": PackedFloat32Array(1, 0, 1),
+"update": 0,
+"values": [0.0, 0.25, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VFX/center:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3.98869, 14),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("VFX/PointLight2D:enabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 4, 15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("VFX/wind:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 14),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("VFX/PointLight2D:energy")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 4, 5.3, 5.8, 6.5, 7.4, 8.7),
+"transitions": PackedFloat32Array(1, 0.5, 1, 0.5, 1, 0.5, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.75, 0.75, 0.5, 0.5, 1.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("VFX/center:process_material:scale_max")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(4, 5.3, 5.8, 6.5, 7.4, 8.7),
+"transitions": PackedFloat32Array(0.33, 1, 0.33, 1, 0.33, 1),
+"update": 0,
+"values": [0.33, 0.5, 0.5, 1.0, 1.0, 1.5]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("VFX/GodRays:material:shader_parameter/color")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(10.7, 11.4, 15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.8), Color(1, 1, 1, 0.8)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("VFX/GodRays:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 10.7, 15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("VFX/GodRays:material:shader_parameter/cutoff")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(10.7, 15),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [0.5, -1.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("VFX/PointLight2D:texture_scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 4, 5.6, 5.9, 6.8, 7.4, 9, 10.8, 11.8),
+"transitions": PackedFloat32Array(0.5, 0.5, 1, 0.5, 1, 0.5, 0.5, 0.5, 1),
+"update": 0,
+"values": [1.0, 1.0, 2.0, 2.0, 4.0, 4.0, 6.0, 6.0, 8.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("VFX/BLANK:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 12.5, 15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("VFX/BLANK:modulate:a")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 12.5, 15),
+"transitions": PackedFloat32Array(2, 2, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Ambience:volume_db")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 4, 12.5, 16),
+"transitions": PackedFloat32Array(0.5, 1, 2, 1),
+"update": 0,
+"values": [0.0, -24.0, -24.0, 0.0]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("VFX/wind:amount")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0, 4, 5.6, 7.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [32, 128, 192, 380]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("VFX/ColorRect:material:shader_parameter/magnitude")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0, 7.5, 12.5, 14.9, 15),
+"transitions": PackedFloat32Array(0.5, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.001, 0.001), Vector2(0.001, 0.001), Vector2(0.01, 0.01), Vector2(0, 0)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Ambience:playing")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(4, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("STAGE/Yova:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0, 14.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_26lau"]
+_data = {
+"RESET": SubResource("Animation_2s6co"),
+"entree_yova": SubResource("Animation_wjd10")
+}
+
+[node name="ULTRABAVARDLAND" type="Node"]
+
+[node name="ColorRect" type="TextureRect" parent="."]
+show_behind_parent = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_360la")
+metadata/_edit_lock_ = true
+
+[node name="STAGE" type="Node2D" parent="."]
+
+[node name="Accueil" type="Sprite2D" parent="STAGE"]
+show_behind_parent = true
+position = Vector2(960, 469)
+texture = ExtResource("6_rom55")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="STAGE/Accueil"]
+position = Vector2(-960.166, -419)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="STAGE/Accueil/StaticBody2D"]
+visible = false
+position = Vector2(94.1147, -288.467)
+polygon = PackedVector2Array(-94.0461, 974.378, -45.9491, 982.467, 58.0509, 966.467, 138.051, 966.467, 242.051, 982.467, 322.051, 1014.47, 434.051, 1037.47, 565.051, 1055.47, 713.051, 1059.47, 823.051, 1072.47, 948.051, 1059.47, 1130.05, 1054.47, 1218.05, 1030.47, 1312.05, 1026.47, 1370.05, 992.467, 1442.05, 958.467, 1517.05, 940.467, 1590.05, 930.467, 1684.05, 952.467, 1721.05, 944.467, 1773.05, 952.467, 1826.05, 950.467, 1826.15, 1126.57, -94.0526, 1126.57)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="STAGE/Accueil/StaticBody2D"]
+visible = false
+position = Vector2(200.166, 622)
+polygon = PackedVector2Array(-200, -64, -112, -72, 8, -40, 80, -64, 168, -80, 224, -72, 208, -40, 0, -16, -112, -48, -200, -40)
+one_way_collision = true
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="STAGE/Accueil/StaticBody2D"]
+visible = false
+position = Vector2(0.165649, -242)
+polygon = PackedVector2Array(1544, 792, 1600, 768, 1768, 776, 1848, 768, 1920, 776, 1920, 800, 1600, 784, 1544, 808)
+one_way_collision = true
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="STAGE/Accueil/StaticBody2D"]
+visible = false
+polygon = PackedVector2Array(480, 526, 640, 526, 600, 590, 504, 590, 480, 550)
+one_way_collision = true
+
+[node name="CharacterBody2D" parent="STAGE" instance=ExtResource("3_owos5")]
+position = Vector2(1656, 464)
+
+[node name="Bulle" parent="STAGE/CharacterBody2D" instance=ExtResource("12_pwjly")]
+position = Vector2(0, -96)
+
+[node name="Area2D" type="Area2D" parent="STAGE"]
+position = Vector2(960, 640)
+script = SubResource("GDScript_br4hs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="STAGE/Area2D"]
+position = Vector2(1234.38, -7)
+shape = SubResource("RectangleShape2D_3ankc")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="STAGE/Area2D"]
+position = Vector2(-1236.25, -7)
+shape = SubResource("RectangleShape2D_3ankc")
+
+[node name="Yova" type="CharacterBody2D" parent="STAGE"]
+position = Vector2(960, 640)
+script = ExtResource("5_if6s6")
+conversation_list = Array[ExtResource("10_hxcuo")]([SubResource("Resource_xu541")])
+
+[node name="Node2D" type="Node2D" parent="STAGE/Yova"]
+
+[node name="Sprite2D" type="Sprite2D" parent="STAGE/Yova/Node2D"]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("6_478pa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="STAGE/Yova"]
+shape = SubResource("CapsuleShape2D_phxkt")
+
+[node name="VFX" type="Node2D" parent="."]
+
+[node name="epic" type="AudioStreamPlayer" parent="VFX"]
+stream = ExtResource("5_4ot64")
+bus = &"Music"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="VFX"]
+
+[node name="wind" type="GPUParticles2D" parent="VFX"]
+material = SubResource("CanvasItemMaterial_4ha4o")
+position = Vector2(1448, 368)
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_jaoot")
+texture = ExtResource("6_emy5s")
+lifetime = 2.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="VFX"]
+environment = SubResource("Environment_mpdup")
+
+[node name="center" type="GPUParticles2D" parent="VFX"]
+material = SubResource("CanvasItemMaterial_a6df8")
+position = Vector2(960, 640)
+emitting = false
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_rxj2u")
+texture = ExtResource("7_jp4d2")
+lifetime = 0.66
+
+[node name="PointLight2D" type="PointLight2D" parent="VFX"]
+position = Vector2(960, 640)
+enabled = false
+energy = 0.0
+shadow_enabled = true
+texture = ExtResource("8_afjwg")
+texture_scale = 4.0
+
+[node name="ColorRect" type="ColorRect" parent="VFX"]
+material = SubResource("ShaderMaterial_2hqph")
+offset_right = 1920.0
+offset_bottom = 888.0
+
+[node name="GodRays" type="ColorRect" parent="VFX"]
+visible = false
+material = SubResource("ShaderMaterial_nm1gy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 888.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BLANK" type="ColorRect" parent="VFX"]
+visible = false
+material = SubResource("CanvasItemMaterial_1sxok")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 888.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Control" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 888.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dmfxo")
+
+[node name="split" type="HSplitContainer" parent="CanvasLayer/Control"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="tchat" type="PanelContainer" parent="CanvasLayer/Control/split"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_vj6pi")
+
+[node name="tchat_panel" type="VBoxContainer" parent="CanvasLayer/Control/split/tchat"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="scroller" type="ScrollContainer" parent="CanvasLayer/Control/split/tchat/tchat_panel"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_l5th3")
+follow_focus = true
+
+[node name="conversation" type="VBoxContainer" parent="CanvasLayer/Control/split/tchat/tchat_panel/scroller"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+alignment = 2
+script = SubResource("GDScript_qqi4i")
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Control/split/tchat/tchat_panel"]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_kcp2i")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/split/tchat/tchat_panel"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Control/split/tchat/tchat_panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_colors/caret_color = Color(1, 0.0196078, 0.403922, 1)
+theme_override_constants/caret_width = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kbi46")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1rpi4")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_kdbfb")
+placeholder_text = "Appuyez sur Entrée"
+max_length = 110
+caret_blink = true
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/split/tchat/tchat_panel/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_ox0xd")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_xu46k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xu46k")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xu46k")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_uw2r7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j3h61")
+text = "ENVOYER"
+
+[node name="panel_droit" type="PanelContainer" parent="CanvasLayer/Control/split"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_26fao")
+
+[node name="intaractif" type="HBoxContainer" parent="CanvasLayer/Control/split/panel_droit"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HSplitContainer" type="HSplitContainer" parent="CanvasLayer/Control/split/panel_droit/intaractif"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+split_offset = 150
+
+[node name="Actions" type="PanelContainer" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vfv72")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Actions"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Actions/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_2my73")
+text = "Actions"
+text_overrun_behavior = 3
+
+[node name="GridContainer" type="HFlowContainer" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Actions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+
+[node name="Useless" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Actions/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_s08dv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_s08dv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sxeni")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_y0gjr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gokvi")
+icon = ExtResource("6_ootky")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("6_cwkna")
+
+[node name="Useless2" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Actions/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_s08dv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_s08dv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sxeni")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_y0gjr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gokvi")
+icon = ExtResource("6_ootky")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Useless3" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Actions/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_s08dv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_s08dv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sxeni")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_y0gjr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gokvi")
+icon = ExtResource("6_ootky")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Emotes" type="PanelContainer" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mnykd")
+
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_2my73")
+text = "Emotes"
+text_overrun_behavior = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer" type="HFlowContainer" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+
+[node name="Smiley" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
+icon = ExtResource("6_ootky")
+expand_icon = true
+
+[node name="Smiley2" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
+icon = ExtResource("6_ootky")
+expand_icon = true
+
+[node name="Smiley3" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
+icon = ExtResource("6_ootky")
+expand_icon = true
+
+[node name="Smiley4" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
+icon = ExtResource("6_ootky")
+expand_icon = true
+
+[node name="Smiley5" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
+icon = ExtResource("6_ootky")
+expand_icon = true
+
+[node name="Smiley6" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
+icon = ExtResource("6_ootky")
+expand_icon = true
+
+[node name="Smiley7" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
+icon = ExtResource("6_ootky")
+expand_icon = true
+
+[node name="Smiley8" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
+icon = ExtResource("6_ootky")
+expand_icon = true
+
+[node name="Smiley9" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
+icon = ExtResource("6_ootky")
+expand_icon = true
+
+[node name="Smiley10" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
+icon = ExtResource("6_ootky")
+expand_icon = true
+
+[node name="Smiley11" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
+icon = ExtResource("6_ootky")
+expand_icon = true
+
+[node name="Smiley12" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
+icon = ExtResource("6_ootky")
+expand_icon = true
+
+[node name="Smiley13" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
+icon = ExtResource("6_ootky")
+expand_icon = true
+
+[node name="Smiley14" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
+icon = ExtResource("6_ootky")
+expand_icon = true
+
+[node name="Smiley15" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
+icon = ExtResource("6_ootky")
+expand_icon = true
+
+[node name="Smiley16" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
+icon = ExtResource("6_ootky")
+expand_icon = true
+
+[node name="Smiley17" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
+icon = ExtResource("6_ootky")
+expand_icon = true
+
+[node name="Smiley18" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
+icon = ExtResource("6_ootky")
+expand_icon = true
+
+[node name="Smiley19" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
+icon = ExtResource("6_ootky")
+expand_icon = true
+
+[node name="Smiley20" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
+icon = ExtResource("6_ootky")
+expand_icon = true
+
+[node name="Smiley21" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
+icon = ExtResource("6_ootky")
+expand_icon = true
+
+[node name="Smiley22" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
+icon = ExtResource("6_ootky")
+expand_icon = true
+
+[node name="Smiley23" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
+icon = ExtResource("6_ootky")
+expand_icon = true
+
+[node name="Smiley24" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_j4uvb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
+icon = ExtResource("6_ootky")
+expand_icon = true
+
+[node name="VSeparator2" type="VSeparator" parent="CanvasLayer/Control/split/panel_droit/intaractif"]
+layout_mode = 2
+theme_override_constants/separation = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_08i0t")
+
+[node name="Informations" type="PanelContainer" parent="CanvasLayer/Control/split/panel_droit/intaractif"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1vojn")
+
+[node name="GridContainer" type="VBoxContainer" parent="CanvasLayer/Control/split/panel_droit/intaractif/Informations"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/Informations/GridContainer"]
+layout_mode = 2
+focus_mode = 1
+theme_override_colors/font_color = Color(1, 0.0196078, 0.403922, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_cptg8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iqxr5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cptg8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gfsst")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_q7v61")
+text = "Messkins"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/Informations/GridContainer"]
+layout_mode = 2
+focus_mode = 1
+theme_override_colors/font_color = Color(1, 0.0196078, 0.403922, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_cptg8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iqxr5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cptg8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gfsst")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_q7v61")
+text = "maps"
+
+[node name="Button3" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/Informations/GridContainer"]
+layout_mode = 2
+focus_mode = 1
+theme_override_colors/font_color = Color(1, 0.0196078, 0.403922, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_cptg8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iqxr5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cptg8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gfsst")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_q7v61")
+text = "News"
+
+[node name="Button4" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/Informations/GridContainer"]
+layout_mode = 2
+focus_mode = 1
+theme_override_colors/font_color = Color(1, 0.0196078, 0.403922, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_cptg8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iqxr5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cptg8")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gfsst")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_q7v61")
+text = "Amis"
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="Premium" type="ConfirmationDialog" parent="CanvasLayer"]
+unique_name_in_owner = true
+disable_3d = true
+title = "Pas si vite !"
+initial_position = 1
+size = Vector2i(906, 373)
+transient = false
+exclusive = false
+unresizable = true
+always_on_top = true
+content_scale_mode = 1
+content_scale_aspect = 1
+theme = SubResource("Theme_kq0m2")
+ok_button_text = "Oui !"
+dialog_text = "Tu as cliqué sur une fonctionnalité premium !
+Veux tu y avoir accès pour seulement ▋.▌▌€?"
+dialog_close_on_escape = false
+dialog_autowrap = true
+cancel_button_text = "Non, je te déteste toi et ta famille."
+
+[node name="Premium2" type="ConfirmationDialog" parent="CanvasLayer"]
+disable_3d = true
+title = "T'es sur ?"
+position = Vector2i(512, 128)
+size = Vector2i(1024, 233)
+transient = false
+exclusive = false
+unresizable = true
+always_on_top = true
+content_scale_mode = 1
+content_scale_aspect = 1
+theme = SubResource("Theme_kq0m2")
+ok_button_text = "C'est vrai que dit comme ça..."
+dialog_text = "Mais c'est une fonctionnalité PREMIUM !
+Tu vas pas rater un truc pareil !?"
+dialog_close_on_escape = false
+dialog_autowrap = true
+cancel_button_text = "VA MOURIR"
+
+[node name="Payed" type="PanelContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -397.0
+offset_top = -89.0
+offset_right = 397.0
+offset_bottom = 89.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_l81ub")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Payed"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="CanvasLayer/Payed/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 32
+text = "Merci de ton achat !
+Nous allons te rediriger vers la page de paiement..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Payed/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.33
+theme_override_styles/background = SubResource("StyleBoxFlat_0xx0m")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ixbtr")
+show_percentage = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Payed"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_lsiqc")
+}
+
+[node name="Premium3" type="AcceptDialog" parent="CanvasLayer"]
+disable_3d = true
+title = "Impossible !"
+position = Vector2i(750, 384)
+size = Vector2i(1024, 443)
+transient = false
+exclusive = false
+unresizable = true
+always_on_top = true
+content_scale_mode = 1
+content_scale_aspect = 1
+theme = SubResource("Theme_kq0m2")
+ok_button_text = "bip boop"
+dialog_text = "Ton refus ne peut dire qu'une chose, tu es un robot !
+Un membre du staff sera dépéché dans les plus brèves délais afin de veiller à ce que vous soyez une véritable personne."
+dialog_close_on_escape = false
+dialog_autowrap = true
+
+[node name="popup_sound" type="AudioStreamPlayer" parent="CanvasLayer"]
+unique_name_in_owner = true
+script = ExtResource("7_uecqf")
+samples = Array[AudioStream]([ExtResource("8_vmvmx"), ExtResource("9_kg48v"), ExtResource("10_bcdic")])
+random_strategy = 1
+random_pitch_range = 0.2
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_lbbbv")
+autoplay = true
+bus = &"Ambience"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_26lau")
+}
+
+[connection signal="body_entered" from="STAGE/Area2D" to="STAGE/Area2D" method="_on_body_entered"]
+[connection signal="line_added" from="CanvasLayer/Control/split/tchat/tchat_panel/scroller/conversation" to="CanvasLayer/Control/split/tchat/tchat_panel/HBoxContainer/LineEdit" method="clear"]
+[connection signal="ready" from="CanvasLayer/Control/split/tchat/tchat_panel/HBoxContainer/LineEdit" to="CanvasLayer/Control/split/tchat/tchat_panel/HBoxContainer/LineEdit" method="grab_focus"]
+[connection signal="text_submitted" from="CanvasLayer/Control/split/tchat/tchat_panel/HBoxContainer/LineEdit" to="CanvasLayer/Control/split/tchat/tchat_panel/scroller/conversation" method="add_line"]
+[connection signal="text_submitted" from="CanvasLayer/Control/split/tchat/tchat_panel/HBoxContainer/LineEdit" to="STAGE/CharacterBody2D/Bulle" method="set_text" binds= [true]]
+[connection signal="about_to_popup" from="CanvasLayer/Premium" to="CanvasLayer/ColorRect" method="show"]
+[connection signal="about_to_popup" from="CanvasLayer/Premium" to="CanvasLayer/popup_sound" method="play"]
+[connection signal="canceled" from="CanvasLayer/Premium" to="CanvasLayer/Premium2" method="popup"]
+[connection signal="about_to_popup" from="CanvasLayer/Premium2" to="CanvasLayer/popup_sound" method="play"]
+[connection signal="canceled" from="CanvasLayer/Premium2" to="CanvasLayer/Premium3" method="popup"]
+[connection signal="about_to_popup" from="CanvasLayer/Premium3" to="CanvasLayer/popup_sound" method="play"]
+[connection signal="confirmed" from="CanvasLayer/Premium3" to="CanvasLayer/ColorRect" method="hide"]
+[connection signal="confirmed" from="CanvasLayer/Premium3" to="AnimationPlayer" method="play" binds= ["entree_yova"]]

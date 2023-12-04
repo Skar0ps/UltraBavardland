@@ -1,0 +1,197 @@
+[gd_scene load_steps=13 format=3 uid="uid://dln4x7mx3gkvk"]
+
+[ext_resource type="AudioStream" uid="uid://bsr2s118o32a8" path="res://GAME/MISC/VFX/teleportation/AC_Digital_Chime_Magical_01.wav" id="1_ytvhw"]
+[ext_resource type="AudioStream" uid="uid://c5q5wbw4sdvpv" path="res://GAME/MISC/VFX/teleportation/AC_Digital_Chime_Magical_02.wav" id="2_6gcmb"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yokrp"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_7t6bw"]
+offsets = PackedFloat32Array(0, 0.498339, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 0.870588, 0.776471, 0.67451, 1, 0.241181, 0.2785, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_03bkj"]
+gradient = SubResource("Gradient_7t6bw")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yd3if"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_5hx25"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.656146, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.0981721, 0.520526, 1, 0.0829612, 0, 1, 0.899622, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_07a2g"]
+gradient = SubResource("Gradient_5hx25")
+width = 1536
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Animation" id="Animation_ghn4q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector2(0.1, 0.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../laser:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.33),
+"update": 0,
+"values": [Vector2(0.1, 0.75)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../laser:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dscew"]
+resource_name = "teleport"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.6),
+"transitions": PackedFloat32Array(0.5, 1, 1),
+"update": 0,
+"values": [Vector2(0.1, 0.2), Vector2(1, 0.5), Vector2(1, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, -2, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../laser:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0, 0.75), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../laser:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.6),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../AudioStreamPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_random"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6ew3k"]
+_data = {
+"RESET": SubResource("Animation_ghn4q"),
+"teleport": SubResource("Animation_dscew")
+}
+
+[sub_resource type="GDScript" id="GDScript_es4a3"]
+script/source = "extends AudioStreamPlayer2D
+
+@export var samples : Array[AudioStream]
+
+func play_random():
+	randomize()
+	stream = samples.pick_random()
+	pitch_scale = randf_range(0.9,1.1)
+	play()
+"
+
+[node name="tp" type="Node2D"]
+
+[node name="round" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_yokrp")
+scale = Vector2(0.1, 0.2)
+texture = SubResource("GradientTexture2D_03bkj")
+
+[node name="laser" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("CanvasItemMaterial_yd3if")
+scale = Vector2(0.1, 0.75)
+texture = SubResource("GradientTexture2D_07a2g")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../round")
+libraries = {
+"": SubResource("AnimationLibrary_6ew3k")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+script = SubResource("GDScript_es4a3")
+samples = Array[AudioStream]([ExtResource("1_ytvhw"), ExtResource("2_6gcmb")])
+
+[connection signal="ready" from="AnimationPlayer" to="AnimationPlayer" method="play" binds= ["teleport"]]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="queue_free"]
