@@ -1,6 +1,7 @@
-[gd_scene load_steps=90 format=3 uid="uid://drtlwp8p1880y"]
+[gd_scene load_steps=92 format=3 uid="uid://drtlwp8p1880y"]
 
 [ext_resource type="Texture2D" uid="uid://bg1ej2nguk630" path="res://GAME/INTRO/fond.jpg" id="1_360la"]
+[ext_resource type="Texture2D" uid="uid://btnstjw1u43oj" path="res://GAME/INTRO/accueil.jpg" id="2_cqh8n"]
 [ext_resource type="PackedScene" uid="uid://bb5c27jb48aq3" path="res://GAME/INTRO/ENTITIES/PLAYER/Blabla.tscn" id="3_owos5"]
 [ext_resource type="FontFile" uid="uid://b3ue6jyjftt70" path="res://MISC/UI/FONTS/comic-sans-ms-font-family/design.graffiti.comicsansmsgras.ttf" id="4_ox0xd"]
 [ext_resource type="AudioStream" uid="uid://ddhbhpf8dyij8" path="res://GAME/INTRO/ENTITIES/YOVA/entree_epique.wav" id="5_4ot64"]
@@ -10,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://cdfa5a5sleeq6" path="res://GAME/MISC/VFX/sprites/particles/Rotated/trace_01_rotated.png" id="6_emy5s"]
 [ext_resource type="AudioStream" uid="uid://km0mfdunkoe7" path="res://GAME/INTRO/Ambience_Wind_Mountain_01_Loop.wav" id="6_lbbbv"]
 [ext_resource type="Texture2D" uid="uid://3u36aht8bdw3" path="res://GAME/INTRO/UI/icones/cadenas.svg" id="6_ootky"]
-[ext_resource type="Texture2D" uid="uid://dii8vuqhxy6il" path="res://GAME/INTRO/Accueil.png" id="6_rom55"]
 [ext_resource type="Texture2D" uid="uid://dm1q58afpk1sb" path="res://GAME/MISC/VFX/sprites/particles/star_09.png" id="7_jp4d2"]
 [ext_resource type="Script" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" id="7_uecqf"]
 [ext_resource type="Script" path="res://MISC/SYSTEME_DIALOGUE/Line.gd" id="8_58wok"]
@@ -21,6 +21,12 @@
 [ext_resource type="AudioStream" uid="uid://dq2mo6i4wkx64" path="res://GAME/INTRO/UI/SFX/Dark Fantasy Studio-Interface-77.wav" id="10_bcdic"]
 [ext_resource type="Script" path="res://MISC/SYSTEME_DIALOGUE/conversation.gd" id="10_hxcuo"]
 [ext_resource type="PackedScene" uid="uid://bj3u3wthdf12j" path="res://MISC/SYSTEME_DIALOGUE/BULLES/bulle_dialogue.tscn" id="12_pwjly"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4jqou"]
+size = Vector2(54, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_muixm"]
+size = Vector2(162, 16)
 
 [sub_resource type="GDScript" id="GDScript_br4hs"]
 script/source = "extends Area2D
@@ -1071,6 +1077,7 @@ _data = {
 [node name="ULTRABAVARDLAND" type="Node"]
 
 [node name="ColorRect" type="TextureRect" parent="."]
+visible = false
 show_behind_parent = true
 anchors_preset = 15
 anchor_right = 1.0
@@ -1084,32 +1091,34 @@ metadata/_edit_lock_ = true
 
 [node name="Accueil" type="Sprite2D" parent="STAGE"]
 show_behind_parent = true
-position = Vector2(960, 469)
-texture = ExtResource("6_rom55")
+texture = ExtResource("2_cqh8n")
+centered = false
 
-[node name="StaticBody2D" type="StaticBody2D" parent="STAGE/Accueil"]
-position = Vector2(-960.166, -419)
+[node name="StaticBody2D" type="StaticBody2D" parent="STAGE"]
+position = Vector2(-0.166016, 50)
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="STAGE/Accueil/StaticBody2D"]
-visible = false
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="STAGE/StaticBody2D"]
 position = Vector2(94.1147, -288.467)
 polygon = PackedVector2Array(-94.0461, 974.378, -45.9491, 982.467, 58.0509, 966.467, 138.051, 966.467, 242.051, 982.467, 322.051, 1014.47, 434.051, 1037.47, 565.051, 1055.47, 713.051, 1059.47, 823.051, 1072.47, 948.051, 1059.47, 1130.05, 1054.47, 1218.05, 1030.47, 1312.05, 1026.47, 1370.05, 992.467, 1442.05, 958.467, 1517.05, 940.467, 1590.05, 930.467, 1684.05, 952.467, 1721.05, 944.467, 1773.05, 952.467, 1826.05, 950.467, 1826.15, 1126.57, -94.0526, 1126.57)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="STAGE/Accueil/StaticBody2D"]
-visible = false
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="STAGE/StaticBody2D"]
 position = Vector2(200.166, 622)
 polygon = PackedVector2Array(-200, -64, -112, -72, 8, -40, 80, -64, 168, -80, 224, -72, 208, -40, 0, -16, -112, -48, -200, -40)
 one_way_collision = true
 
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="STAGE/Accueil/StaticBody2D"]
-visible = false
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="STAGE/StaticBody2D"]
 position = Vector2(0.165649, -242)
 polygon = PackedVector2Array(1544, 792, 1600, 768, 1768, 776, 1848, 768, 1920, 776, 1920, 800, 1600, 784, 1544, 808)
 one_way_collision = true
 
-[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="STAGE/Accueil/StaticBody2D"]
-visible = false
-polygon = PackedVector2Array(480, 526, 640, 526, 600, 590, 504, 590, 480, 550)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="STAGE/StaticBody2D"]
+position = Vector2(1177.17, 507)
+shape = SubResource("RectangleShape2D_4jqou")
+one_way_collision = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="STAGE/StaticBody2D"]
+position = Vector2(559.166, 534)
+shape = SubResource("RectangleShape2D_muixm")
 one_way_collision = true
 
 [node name="CharacterBody2D" parent="STAGE" instance=ExtResource("3_owos5")]
