@@ -13,14 +13,12 @@
 [ext_resource type="Texture2D" uid="uid://3u36aht8bdw3" path="res://GAME/INTRO/UI/icones/cadenas.svg" id="6_ootky"]
 [ext_resource type="Texture2D" uid="uid://dm1q58afpk1sb" path="res://GAME/MISC/VFX/sprites/particles/star_09.png" id="7_jp4d2"]
 [ext_resource type="Script" path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" id="7_uecqf"]
-[ext_resource type="Script" path="res://MISC/SYSTEME_DIALOGUE/Line.gd" id="8_58wok"]
 [ext_resource type="Texture2D" uid="uid://wrapjsmji4q" path="res://GAME/MISC/VFX/sprites/light/flare/flare01.png" id="8_afjwg"]
 [ext_resource type="AudioStream" uid="uid://bj5cvuhvf6hpe" path="res://GAME/INTRO/UI/SFX/Dark Fantasy Studio-Interface-53.wav" id="8_vmvmx"]
 [ext_resource type="AudioStream" uid="uid://tgupsb8mbgtm" path="res://GAME/INTRO/UI/SFX/Dark Fantasy Studio-Interface-55.wav" id="9_kg48v"]
-[ext_resource type="Script" path="res://MISC/SYSTEME_DIALOGUE/Speaker.gd" id="9_wwvqe"]
 [ext_resource type="AudioStream" uid="uid://dq2mo6i4wkx64" path="res://GAME/INTRO/UI/SFX/Dark Fantasy Studio-Interface-77.wav" id="10_bcdic"]
-[ext_resource type="Script" path="res://MISC/SYSTEME_DIALOGUE/conversation.gd" id="10_hxcuo"]
 [ext_resource type="PackedScene" uid="uid://bj3u3wthdf12j" path="res://MISC/SYSTEME_DIALOGUE/BULLES/bulle_dialogue.tscn" id="12_pwjly"]
+[ext_resource type="Texture2D" uid="uid://dymfm5iesxq0u" path="res://MISC/UI/ICONS/unsee.svg" id="14_odltw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4jqou"]
 size = Vector2(54, 11)
@@ -38,35 +36,6 @@ func _on_body_entered(body):
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ankc"]
 size = Vector2(580.75, 1272)
-
-[sub_resource type="Resource" id="Resource_03int"]
-script = ExtResource("9_wwvqe")
-name = ""
-color = Color(0, 0, 0, 1)
-
-[sub_resource type="Resource" id="Resource_15oy6"]
-script = ExtResource("8_58wok")
-conditions = {}
-speaker = SubResource("Resource_03int")
-text = "Salut"
-
-[sub_resource type="Resource" id="Resource_ax52f"]
-script = ExtResource("8_58wok")
-conditions = {
-"has_killed_god": false
-}
-text = "Comment ça va ?"
-
-[sub_resource type="Resource" id="Resource_nxp2r"]
-script = ExtResource("8_58wok")
-conditions = {}
-text = "C'est la fin de la conversation"
-
-[sub_resource type="Resource" id="Resource_xu541"]
-script = ExtResource("10_hxcuo")
-conditions = {}
-one_shot = true
-lines = Array[ExtResource("8_58wok")]([SubResource("Resource_15oy6"), SubResource("Resource_ax52f"), SubResource("Resource_nxp2r")])
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_phxkt"]
 radius = 48.0
@@ -311,8 +280,44 @@ shader_parameter/seed = 2.0
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1sxok"]
 light_mode = 1
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dmfxo"]
-bg_color = Color(1, 1, 1, 1)
+[sub_resource type="Gradient" id="Gradient_wcy8g"]
+offsets = PackedFloat32Array(0.754386, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y3h6v"]
+gradient = SubResource("Gradient_wcy8g")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5bqol"]
+texture = SubResource("GradientTexture2D_y3h6v")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lm2wl"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(1, 0.02, 0.4, 0.66)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d786o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f4spu"]
+
+[sub_resource type="GDScript" id="GDScript_jikv7"]
+script/source = "extends Button
+
+var see = preload(\"res://MISC/UI/ICONS/see.svg\")
+var unsee = preload(\"res://MISC/UI/ICONS/unsee.svg\")
+@onready var split = $\"../split\"
+
+func _toggled(button_pressed):
+	print(button_pressed)
+	icon = see if button_pressed else unsee
+	split.visible = !button_pressed
+"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vj6pi"]
 content_margin_left = 8.0
@@ -320,6 +325,7 @@ content_margin_top = 8.0
 content_margin_right = 8.0
 content_margin_bottom = 8.0
 bg_color = Color(1, 1, 1, 1)
+draw_center = false
 border_width_right = 2
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l5th3"]
@@ -336,8 +342,6 @@ signal line_added()
 const line_scene = preload(\"res://GAME/INTRO/UI/tchat_line.tscn\")
 
 func add_line(phrase:String,pseudo:String=\"Inconnu\"):
-	if phrase.strip_edges() == \"\" : return
-	
 	var new_line = line_scene.instantiate()
 	new_line.set_line(phrase,pseudo)
 	add_child(new_line)
@@ -360,6 +364,20 @@ content_margin_bottom = 12.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kdbfb"]
 
+[sub_resource type="GDScript" id="GDScript_vor3w"]
+script/source = "extends LineEdit
+
+signal create_bubble(txt)
+
+func _ready():
+	text_submitted.connect(_on_text_submitted)
+
+
+func _on_text_submitted(txt:String):
+	if text.strip_edges() != \"\":
+		emit_signal(\"create_bubble\",txt)
+"
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xu46k"]
 content_margin_left = 24.0
 content_margin_top = 8.0
@@ -381,12 +399,14 @@ content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
 bg_color = Color(1, 1, 1, 1)
+draw_center = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vfv72"]
 content_margin_top = 8.0
 content_margin_right = 10.0
 content_margin_bottom = 8.0
 bg_color = Color(1, 1, 1, 1)
+draw_center = false
 border_width_right = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2my73"]
@@ -435,6 +455,7 @@ content_margin_top = 8.0
 content_margin_right = 8.0
 content_margin_bottom = 8.0
 bg_color = Color(1, 1, 1, 1)
+draw_center = false
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j4uvb"]
 
@@ -1125,7 +1146,7 @@ one_way_collision = true
 position = Vector2(1656, 464)
 
 [node name="Bulle" parent="STAGE/CharacterBody2D" instance=ExtResource("12_pwjly")]
-position = Vector2(0, -96)
+position = Vector2(0, -72)
 
 [node name="Area2D" type="Area2D" parent="STAGE"]
 position = Vector2(960, 640)
@@ -1142,7 +1163,6 @@ shape = SubResource("RectangleShape2D_3ankc")
 [node name="Yova" type="CharacterBody2D" parent="STAGE"]
 position = Vector2(960, 640)
 script = ExtResource("5_if6s6")
-conversation_list = Array[ExtResource("10_hxcuo")]([SubResource("Resource_xu541")])
 
 [node name="Node2D" type="Node2D" parent="STAGE/Yova"]
 
@@ -1221,68 +1241,88 @@ grow_vertical = 2
 layer = 10
 
 [node name="Control" type="PanelContainer" parent="CanvasLayer"]
-anchors_preset = 15
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 888.0
+offset_top = -36.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_dmfxo")
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxTexture_5bqol")
 
-[node name="split" type="HSplitContainer" parent="CanvasLayer/Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(168, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_lm2wl")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lm2wl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lm2wl")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_d786o")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_f4spu")
+toggle_mode = true
+icon = ExtResource("14_odltw")
+icon_alignment = 1
+script = SubResource("GDScript_jikv7")
+
+[node name="split" type="HSplitContainer" parent="CanvasLayer/Control/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 0
+split_offset = 110
 
-[node name="tchat" type="PanelContainer" parent="CanvasLayer/Control/split"]
+[node name="tchat" type="PanelContainer" parent="CanvasLayer/Control/VBoxContainer/split"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_vj6pi")
 
-[node name="tchat_panel" type="VBoxContainer" parent="CanvasLayer/Control/split/tchat"]
+[node name="tchat_panel" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer/split/tchat"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="scroller" type="ScrollContainer" parent="CanvasLayer/Control/split/tchat/tchat_panel"]
+[node name="scroller" type="ScrollContainer" parent="CanvasLayer/Control/VBoxContainer/split/tchat/tchat_panel"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_l5th3")
 follow_focus = true
 
-[node name="conversation" type="VBoxContainer" parent="CanvasLayer/Control/split/tchat/tchat_panel/scroller"]
+[node name="conversation" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer/split/tchat/tchat_panel/scroller"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 alignment = 2
 script = SubResource("GDScript_qqi4i")
 
-[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Control/split/tchat/tchat_panel"]
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Control/VBoxContainer/split/tchat/tchat_panel"]
 layout_mode = 2
 theme_override_constants/separation = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_kcp2i")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/split/tchat/tchat_panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer/split/tchat/tchat_panel"]
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Control/split/tchat/tchat_panel/HBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/Control/VBoxContainer/split/tchat/tchat_panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_placeholder_color = Color(0.5, 0.5, 0.5, 1)
 theme_override_colors/caret_color = Color(1, 0.0196078, 0.403922, 1)
 theme_override_constants/caret_width = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxEmpty_kbi46")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1rpi4")
 theme_override_styles/read_only = SubResource("StyleBoxEmpty_kdbfb")
 placeholder_text = "Appuyez sur Entrée"
 max_length = 110
 caret_blink = true
+script = SubResource("GDScript_vor3w")
 
-[node name="Button" type="Button" parent="CanvasLayer/Control/split/tchat/tchat_panel/HBoxContainer"]
+[node name="Button" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/tchat/tchat_panel/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_ox0xd")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_xu46k")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xu46k")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_xu46k")
@@ -1290,44 +1330,44 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_uw2r7")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_j3h61")
 text = "ENVOYER"
 
-[node name="panel_droit" type="PanelContainer" parent="CanvasLayer/Control/split"]
+[node name="panel_droit" type="PanelContainer" parent="CanvasLayer/Control/VBoxContainer/split"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_26fao")
 
-[node name="intaractif" type="HBoxContainer" parent="CanvasLayer/Control/split/panel_droit"]
+[node name="intaractif" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="HSplitContainer" type="HSplitContainer" parent="CanvasLayer/Control/split/panel_droit/intaractif"]
+[node name="HSplitContainer" type="HSplitContainer" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 0
 split_offset = 150
 
-[node name="Actions" type="PanelContainer" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer"]
+[node name="Actions" type="PanelContainer" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vfv72")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Actions"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Actions"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Actions/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Actions/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_2my73")
 text = "Actions"
 text_overrun_behavior = 3
 
-[node name="GridContainer" type="HFlowContainer" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Actions/VBoxContainer"]
+[node name="GridContainer" type="HFlowContainer" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Actions/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 
-[node name="Useless" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Actions/VBoxContainer/GridContainer"]
+[node name="Useless" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Actions/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1341,7 +1381,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("6_cwkna")
 
-[node name="Useless2" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Actions/VBoxContainer/GridContainer"]
+[node name="Useless2" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Actions/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1354,7 +1394,7 @@ icon = ExtResource("6_ootky")
 icon_alignment = 1
 expand_icon = true
 
-[node name="Useless3" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Actions/VBoxContainer/GridContainer"]
+[node name="Useless3" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Actions/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1367,35 +1407,35 @@ icon = ExtResource("6_ootky")
 icon_alignment = 1
 expand_icon = true
 
-[node name="Emotes" type="PanelContainer" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer"]
+[node name="Emotes" type="PanelContainer" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_mnykd")
 
-[node name="VBox" type="VBoxContainer" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes"]
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox"]
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_2my73")
 text = "Emotes"
 text_overrun_behavior = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="GridContainer" type="HFlowContainer" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer"]
+[node name="GridContainer" type="HFlowContainer" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
 
-[node name="Smiley" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+[node name="Smiley" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1407,7 +1447,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
 icon = ExtResource("6_ootky")
 expand_icon = true
 
-[node name="Smiley2" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+[node name="Smiley2" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1419,7 +1459,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
 icon = ExtResource("6_ootky")
 expand_icon = true
 
-[node name="Smiley3" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+[node name="Smiley3" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1431,7 +1471,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
 icon = ExtResource("6_ootky")
 expand_icon = true
 
-[node name="Smiley4" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+[node name="Smiley4" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1443,7 +1483,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
 icon = ExtResource("6_ootky")
 expand_icon = true
 
-[node name="Smiley5" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+[node name="Smiley5" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1455,7 +1495,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
 icon = ExtResource("6_ootky")
 expand_icon = true
 
-[node name="Smiley6" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+[node name="Smiley6" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1467,7 +1507,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
 icon = ExtResource("6_ootky")
 expand_icon = true
 
-[node name="Smiley7" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+[node name="Smiley7" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1479,7 +1519,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
 icon = ExtResource("6_ootky")
 expand_icon = true
 
-[node name="Smiley8" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+[node name="Smiley8" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1491,7 +1531,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
 icon = ExtResource("6_ootky")
 expand_icon = true
 
-[node name="Smiley9" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+[node name="Smiley9" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1503,7 +1543,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
 icon = ExtResource("6_ootky")
 expand_icon = true
 
-[node name="Smiley10" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+[node name="Smiley10" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1515,7 +1555,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
 icon = ExtResource("6_ootky")
 expand_icon = true
 
-[node name="Smiley11" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+[node name="Smiley11" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1527,7 +1567,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
 icon = ExtResource("6_ootky")
 expand_icon = true
 
-[node name="Smiley12" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+[node name="Smiley12" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1539,7 +1579,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
 icon = ExtResource("6_ootky")
 expand_icon = true
 
-[node name="Smiley13" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+[node name="Smiley13" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1551,7 +1591,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
 icon = ExtResource("6_ootky")
 expand_icon = true
 
-[node name="Smiley14" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+[node name="Smiley14" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1563,7 +1603,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
 icon = ExtResource("6_ootky")
 expand_icon = true
 
-[node name="Smiley15" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+[node name="Smiley15" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1575,7 +1615,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
 icon = ExtResource("6_ootky")
 expand_icon = true
 
-[node name="Smiley16" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+[node name="Smiley16" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1587,7 +1627,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
 icon = ExtResource("6_ootky")
 expand_icon = true
 
-[node name="Smiley17" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+[node name="Smiley17" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1599,7 +1639,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
 icon = ExtResource("6_ootky")
 expand_icon = true
 
-[node name="Smiley18" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+[node name="Smiley18" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1611,7 +1651,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
 icon = ExtResource("6_ootky")
 expand_icon = true
 
-[node name="Smiley19" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+[node name="Smiley19" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1623,7 +1663,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
 icon = ExtResource("6_ootky")
 expand_icon = true
 
-[node name="Smiley20" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+[node name="Smiley20" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1635,7 +1675,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
 icon = ExtResource("6_ootky")
 expand_icon = true
 
-[node name="Smiley21" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+[node name="Smiley21" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1647,7 +1687,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
 icon = ExtResource("6_ootky")
 expand_icon = true
 
-[node name="Smiley22" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+[node name="Smiley22" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1659,7 +1699,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
 icon = ExtResource("6_ootky")
 expand_icon = true
 
-[node name="Smiley23" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+[node name="Smiley23" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1671,7 +1711,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
 icon = ExtResource("6_ootky")
 expand_icon = true
 
-[node name="Smiley24" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
+[node name="Smiley24" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/HSplitContainer/Emotes/VBox/ScrollContainer/GridContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -1683,25 +1723,25 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_j4uvb")
 icon = ExtResource("6_ootky")
 expand_icon = true
 
-[node name="VSeparator2" type="VSeparator" parent="CanvasLayer/Control/split/panel_droit/intaractif"]
+[node name="VSeparator2" type="VSeparator" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif"]
 layout_mode = 2
 theme_override_constants/separation = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_08i0t")
 
-[node name="Informations" type="PanelContainer" parent="CanvasLayer/Control/split/panel_droit/intaractif"]
+[node name="Informations" type="PanelContainer" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_1vojn")
 
-[node name="GridContainer" type="VBoxContainer" parent="CanvasLayer/Control/split/panel_droit/intaractif/Informations"]
+[node name="GridContainer" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/Informations"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Button" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/Informations/GridContainer"]
+[node name="Button" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/Informations/GridContainer"]
 layout_mode = 2
 focus_mode = 1
 theme_override_colors/font_color = Color(1, 0.0196078, 0.403922, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_cptg8")
 theme_override_styles/hover = SubResource("StyleBoxFlat_iqxr5")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_cptg8")
@@ -1709,11 +1749,11 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_gfsst")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_q7v61")
 text = "Messkins"
 
-[node name="Button2" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/Informations/GridContainer"]
+[node name="Button2" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/Informations/GridContainer"]
 layout_mode = 2
 focus_mode = 1
 theme_override_colors/font_color = Color(1, 0.0196078, 0.403922, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_cptg8")
 theme_override_styles/hover = SubResource("StyleBoxFlat_iqxr5")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_cptg8")
@@ -1721,11 +1761,11 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_gfsst")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_q7v61")
 text = "maps"
 
-[node name="Button3" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/Informations/GridContainer"]
+[node name="Button3" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/Informations/GridContainer"]
 layout_mode = 2
 focus_mode = 1
 theme_override_colors/font_color = Color(1, 0.0196078, 0.403922, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_cptg8")
 theme_override_styles/hover = SubResource("StyleBoxFlat_iqxr5")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_cptg8")
@@ -1733,11 +1773,11 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_gfsst")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_q7v61")
 text = "News"
 
-[node name="Button4" type="Button" parent="CanvasLayer/Control/split/panel_droit/intaractif/Informations/GridContainer"]
+[node name="Button4" type="Button" parent="CanvasLayer/Control/VBoxContainer/split/panel_droit/intaractif/Informations/GridContainer"]
 layout_mode = 2
 focus_mode = 1
 theme_override_colors/font_color = Color(1, 0.0196078, 0.403922, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_cptg8")
 theme_override_styles/hover = SubResource("StyleBoxFlat_iqxr5")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_cptg8")
@@ -1874,10 +1914,10 @@ libraries = {
 }
 
 [connection signal="body_entered" from="STAGE/Area2D" to="STAGE/Area2D" method="_on_body_entered"]
-[connection signal="line_added" from="CanvasLayer/Control/split/tchat/tchat_panel/scroller/conversation" to="CanvasLayer/Control/split/tchat/tchat_panel/HBoxContainer/LineEdit" method="clear"]
-[connection signal="ready" from="CanvasLayer/Control/split/tchat/tchat_panel/HBoxContainer/LineEdit" to="CanvasLayer/Control/split/tchat/tchat_panel/HBoxContainer/LineEdit" method="grab_focus"]
-[connection signal="text_submitted" from="CanvasLayer/Control/split/tchat/tchat_panel/HBoxContainer/LineEdit" to="CanvasLayer/Control/split/tchat/tchat_panel/scroller/conversation" method="add_line"]
-[connection signal="text_submitted" from="CanvasLayer/Control/split/tchat/tchat_panel/HBoxContainer/LineEdit" to="STAGE/CharacterBody2D/Bulle" method="set_text" binds= [true]]
+[connection signal="line_added" from="CanvasLayer/Control/VBoxContainer/split/tchat/tchat_panel/scroller/conversation" to="CanvasLayer/Control/VBoxContainer/split/tchat/tchat_panel/HBoxContainer/LineEdit" method="clear"]
+[connection signal="create_bubble" from="CanvasLayer/Control/VBoxContainer/split/tchat/tchat_panel/HBoxContainer/LineEdit" to="CanvasLayer/Control/VBoxContainer/split/tchat/tchat_panel/scroller/conversation" method="add_line"]
+[connection signal="create_bubble" from="CanvasLayer/Control/VBoxContainer/split/tchat/tchat_panel/HBoxContainer/LineEdit" to="STAGE/CharacterBody2D/Bulle" method="set_text" binds= [true]]
+[connection signal="ready" from="CanvasLayer/Control/VBoxContainer/split/tchat/tchat_panel/HBoxContainer/LineEdit" to="CanvasLayer/Control/VBoxContainer/split/tchat/tchat_panel/HBoxContainer/LineEdit" method="grab_focus"]
 [connection signal="about_to_popup" from="CanvasLayer/Premium" to="CanvasLayer/ColorRect" method="show"]
 [connection signal="about_to_popup" from="CanvasLayer/Premium" to="CanvasLayer/popup_sound" method="play"]
 [connection signal="canceled" from="CanvasLayer/Premium" to="CanvasLayer/Premium2" method="popup"]

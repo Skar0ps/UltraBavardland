@@ -17,11 +17,15 @@ run/main_scene="res://GAME/INTRO/UltraBavardland.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://ICON/dungeon_icon.svg"
 
+[autoload]
+
+DialogueManager="*res://MISC/SYSTEME_DIALOGUE/DialogueManager.gd"
+
 [display]
 
 window/size/viewport_width=1920
-window/size/viewport_height=1280
-window/size/window_width_override=1080
+window/size/viewport_height=1080
+window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 

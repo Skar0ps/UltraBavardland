@@ -1,5 +1,6 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1701660511
+::res://::1704719072
+ConversationArea.gd::GDScript::-1::1704310846::0::1::::<>Area2D<>::
 default_bus_layout.tres::AudioBusLayout::336657615256232797::1700757119::0::1::::<><>::
 icon.svg::CompressedTexture2D::8629214214360230883::1700430618::1701660498::1::::<><>::
 README.md::TextFile::-1::1701660271::0::1::::<><>::
@@ -156,7 +157,7 @@ action_property_inspector_plugin.gd::GDScript::-1::1700498564::0::1::::<>EditorI
 normal_range_inspector_plugin.gd::GDScript::-1::1700498564::0::1::::<>EditorInspectorPlugin<>::
 ::res://addons/rmsmartshape/editors/NormalRangeEditor/::1701660499
 NormalRangeEditor.gd::GDScript::-1::1700498564::0::1::::SS2D_NormalRangeEditor<>VBoxContainer<>::
-NormalRangeEditor.tscn::PackedScene::5248967896876913263::1700498564::0::1::::<><>::uid://dajqljvjm2d2q::::res://addons/rmsmartshape/editors/NormalRangeEditor/progress_texture.png<>res://addons/rmsmartshape/editors/NormalRangeEditor/NormalRangeEditor.gd<>uid://dgd4sbhsw1no3::::res://addons/rmsmartshape/editors/NormalRangeEditor/over_texture.png<>uid://cax163h05b60j::::res://addons/rmsmartshape/editors/NormalRangeEditor/under_texture.png
+NormalRangeEditor.tscn::PackedScene::5248967896876913263::1700498564::0::1::::<><>::uid://dajqljvjm2d2q
 NormalRangeEditorProperty.gd::GDScript::-1::1700498564::0::1::::SS2D_NormalRangeEditorProperty<>EditorProperty<>::
 over_texture.png::CompressedTexture2D::7588381247435447900::1700498564::1701660499::1::::<><>::
 progress_texture.png::CompressedTexture2D::7178833072060122922::1700498564::1701660499::1::::<><>::
@@ -169,11 +170,11 @@ edge_material_metadata.gd::GDScript::-1::1700498564::0::1::::SS2D_Material_Edge_
 shape_material.gd::GDScript::-1::1700498564::0::1::::SS2D_Material_Shape<>Resource<>::
 ::res://addons/rmsmartshape/scenes/::1700498565
 GUI_Edge_InfoPanel.gd::GDScript::-1::1700498565::0::1::::<>PanelContainer<>::
-GUI_Edge_InfoPanel.tscn::PackedScene::6511771717859096884::1700498565::0::1::::<><>::uid://dud4fe6fsicvm::::res://addons/rmsmartshape/assets/gui_theme.res<>res://addons/rmsmartshape/scenes/GUI_Edge_InfoPanel.gd
+GUI_Edge_InfoPanel.tscn::PackedScene::6511771717859096884::1700498565::0::1::::<><>::uid://dud4fe6fsicvm
 GUI_InfoPanel.gd::GDScript::-1::1700498565::0::1::::<>PanelContainer<>::
-GUI_InfoPanel.tscn::PackedScene::6430404396963951352::1700498565::0::1::::<><>::uid://dud4fe6fsicvm::::res://addons/rmsmartshape/assets/gui_theme.res<>res://addons/rmsmartshape/scenes/GUI_InfoPanel.gd
+GUI_InfoPanel.tscn::PackedScene::6430404396963951352::1700498565::0::1::::<><>::uid://dud4fe6fsicvm
 SnapPopup.gd::GDScript::-1::1700498565::0::1::::<>Popup<>::
-SnapPopup.tscn::PackedScene::8984332128935894720::1700498565::0::1::::<><>::res://addons/rmsmartshape/scenes/SnapPopup.gd<>uid://dud4fe6fsicvm::::res://addons/rmsmartshape/assets/gui_theme.res
+SnapPopup.tscn::PackedScene::8984332128935894720::1700498565::0::1::::<><>::res://addons/rmsmartshape/scenes/SnapPopup.gd<>uid://dud4fe6fsicvm
 ::res://addons/rmsmartshape/shapes/::1700498565
 edge.gd::GDScript::-1::1700498565::0::1::::SS2D_Edge<>RefCounted<>::
 index_map.gd::GDScript::-1::1700498565::0::1::::SS2D_IndexMap<>RefCounted<>::
@@ -206,22 +207,22 @@ State.gd::GDScript::-1::1700441561::0::1::::<>State<>::
 ::res://GAME/::1700757775
 ::res://GAME/DONJON/::1700792495
 ::res://GAME/DONJON/SALLES/::1701460167
-base_salle.tscn::PackedScene::5809886139400678388::1701460167::0::1::::<><>::uid://cipv0qg10fnoe::::res://addons/placeholder/programmer_art/wall.PNG
+base_salle.tscn::PackedScene::5809886139400678388::1701460167::0::1::::<><>::uid://cipv0qg10fnoe
 ::res://GAME/DONJON/SYSTEME_DONJON/::1700787289
 room_manager.gd::GDScript::-1::1700787289::0::1::::<>Resource<>::
-::res://GAME/INTRO/::1701660822
-accueil.jpg::CompressedTexture2D::3747972967477551677::1701660666::1701660828::1::::<><>::
+::res://GAME/INTRO/::1704310846
+accueil.jpg::CompressedTexture2D::3747972967477551677::1702328737::1702328738::1::::<><>::
 AC_Bouncy_Bubble_01v1.wav::AudioStreamWAV::758461587795946368::1700535998::1701660505::1::::<><>::
 Ambience_Wind_Mountain_01_Loop.wav::AudioStreamWAV::728200591952715712::1700756966::1701660505::1::::<><>::
 premium_button.gd::GDScript::-1::1700877956::0::1::::<>Button<>::
-UltraBavardland.tscn::PackedScene::8392403584185738294::1701660794::0::1::::<><>::uid://bg1ej2nguk630::::res://GAME/INTRO/fond.jpg<>uid://chl36jf8tnc1a::::res://GAME/INTRO/accueil.jpg<>uid://bb5c27jb48aq3::::res://GAME/INTRO/ENTITIES/PLAYER/Blabla.tscn<>uid://b3ue6jyjftt70::::res://MISC/UI/FONTS/comic-sans-ms-font-family/design.graffiti.comicsansmsgras.ttf<>uid://ddhbhpf8dyij8::::res://GAME/INTRO/ENTITIES/YOVA/entree_epique.wav<>res://MISC/SYSTEME_DIALOGUE/PNJ.gd<>uid://nf6fampqvy3a::::res://GAME/INTRO/ENTITIES/YOVA/sprites/alien.jpg<>res://GAME/INTRO/premium_button.gd<>uid://cdfa5a5sleeq6::::res://GAME/MISC/VFX/sprites/particles/Rotated/trace_01_rotated.png<>uid://km0mfdunkoe7::::res://GAME/INTRO/Ambience_Wind_Mountain_01_Loop.wav<>uid://3u36aht8bdw3::::res://GAME/INTRO/UI/icones/cadenas.svg<>uid://dm1q58afpk1sb::::res://GAME/MISC/VFX/sprites/particles/star_09.png<>res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd<>res://MISC/SYSTEME_DIALOGUE/Line.gd<>uid://wrapjsmji4q::::res://GAME/MISC/VFX/sprites/light/flare/flare01.png<>uid://bj5cvuhvf6hpe::::res://GAME/INTRO/UI/SFX/Dark Fantasy Studio-Interface-53.wav<>uid://tgupsb8mbgtm::::res://GAME/INTRO/UI/SFX/Dark Fantasy Studio-Interface-55.wav<>res://MISC/SYSTEME_DIALOGUE/Speaker.gd<>uid://dq2mo6i4wkx64::::res://GAME/INTRO/UI/SFX/Dark Fantasy Studio-Interface-77.wav<>res://MISC/SYSTEME_DIALOGUE/conversation.gd<>uid://bj3u3wthdf12j::::res://MISC/SYSTEME_DIALOGUE/BULLES/bulle_dialogue.tscn
+UltraBavardland.tscn::PackedScene::8392403584185738294::1704310846::0::1::::<><>::uid://bg1ej2nguk630::::res://GAME/INTRO/fond.jpg<>uid://btnstjw1u43oj::::res://GAME/INTRO/accueil.jpg<>uid://bb5c27jb48aq3::::res://GAME/INTRO/ENTITIES/PLAYER/Blabla.tscn<>uid://b3ue6jyjftt70::::res://MISC/UI/FONTS/comic-sans-ms-font-family/design.graffiti.comicsansmsgras.ttf<>uid://ddhbhpf8dyij8::::res://GAME/INTRO/ENTITIES/YOVA/entree_epique.wav<>res://MISC/SYSTEME_DIALOGUE/PNJ.gd<>uid://nf6fampqvy3a::::res://GAME/INTRO/ENTITIES/YOVA/sprites/alien.jpg<>res://GAME/INTRO/premium_button.gd<>uid://cdfa5a5sleeq6::::res://GAME/MISC/VFX/sprites/particles/Rotated/trace_01_rotated.png<>uid://km0mfdunkoe7::::res://GAME/INTRO/Ambience_Wind_Mountain_01_Loop.wav<>uid://3u36aht8bdw3::::res://GAME/INTRO/UI/icones/cadenas.svg<>uid://dm1q58afpk1sb::::res://GAME/MISC/VFX/sprites/particles/star_09.png<>res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd<>uid://wrapjsmji4q::::res://GAME/MISC/VFX/sprites/light/flare/flare01.png<>uid://bj5cvuhvf6hpe::::res://GAME/INTRO/UI/SFX/Dark Fantasy Studio-Interface-53.wav<>uid://tgupsb8mbgtm::::res://GAME/INTRO/UI/SFX/Dark Fantasy Studio-Interface-55.wav<>uid://dq2mo6i4wkx64::::res://GAME/INTRO/UI/SFX/Dark Fantasy Studio-Interface-77.wav<>uid://bj3u3wthdf12j::::res://MISC/SYSTEME_DIALOGUE/BULLES/bulle_dialogue.tscn<>uid://dymfm5iesxq0u::::res://MISC/UI/ICONS/unsee.svg
 ::res://GAME/INTRO/ENTITIES/::1701022795
-::res://GAME/INTRO/ENTITIES/PLAYER/::1701660500
-Blabla.tscn::PackedScene::2518712205109822964::1701460167::0::1::::<><>::uid://b33p0327m5nru::::res://GAME/INTRO/ENTITIES/PLAYER/head.svg<>uid://iopdpodvoc6::::res://GAME/INTRO/ENTITIES/PLAYER/foot.svg<>uid://b3ue6jyjftt70::::res://MISC/UI/FONTS/comic-sans-ms-font-family/design.graffiti.comicsansmsgras.ttf
+::res://GAME/INTRO/ENTITIES/PLAYER/::1702328978
+Blabla.tscn::PackedScene::2518712205109822964::1702328978::0::1::::<><>::uid://b33p0327m5nru
 foot.svg::CompressedTexture2D::17392028222845427::1701137837::1701660500::1::::<><>::
 head.svg::CompressedTexture2D::4410467796245488506::1701137873::1701660500::1::::<><>::
 PlatformerCharacter.gd::GDScript::-1::1700756182::0::1::::PlatformerCharacter2D<>CharacterBody2D<>::
-::res://GAME/INTRO/ENTITIES/YOVA/::1701660508
+::res://GAME/INTRO/ENTITIES/YOVA/::1703167955
 AC_Disappointment_01.wav::AudioStreamWAV::2382743908852987007::1701119542::1701660505::1::::<><>::
 DeHorror Cells Intensity 1.wav::AudioStreamWAV::2767065428469076146::1701107838::1701660508::1::::<><>::
 DeHorror Cells Intensity 2.wav::AudioStreamWAV::5885730067584219336::1701107838::1701660508::1::::<><>::
@@ -233,7 +234,7 @@ alien.jpg::CompressedTexture2D::924668031051424544::1701134266::1701660500::1:::
 patte.png::CompressedTexture2D::5050741481802357308::1701114254::1701660500::1::::<><>::
 tete.png::CompressedTexture2D::4646222980974449222::1701114266::1701660500::1::::<><>::
 ::res://GAME/INTRO/UI/::1700872384
-tchat_line.tscn::PackedScene::7201869208587545323::1700784554::0::1::::<><>::uid://b6b8dkk8r26q5::::res://MISC/UI/FONTS/comic-sans-ms-font-family/COMIC.TTF<>uid://b3ue6jyjftt70::::res://MISC/UI/FONTS/comic-sans-ms-font-family/design.graffiti.comicsansmsgras.ttf
+tchat_line.tscn::PackedScene::7201869208587545323::1700784554::0::1::::<><>::uid://b6b8dkk8r26q5
 ::res://GAME/INTRO/UI/icones/::1701660500
 cadenas.svg::CompressedTexture2D::2008330624075661644::1700782174::1701660500::1::::<><>::
 ::res://GAME/INTRO/UI/SFX/::1701660505
@@ -412,9 +413,9 @@ sketchy.png::CompressedTexture2D::642016423628666486::1676839548::1701660498::1:
 ::res://GAME/MISC/VFX/teleportation/::1701660505
 AC_Digital_Chime_Magical_01.wav::AudioStreamWAV::3686587201382910829::1700535128::1701660505::1::::<><>::
 AC_Digital_Chime_Magical_02.wav::AudioStreamWAV::6913397605691903039::1700535128::1701660505::1::::<><>::
-teleportation.tscn::PackedScene::7959979808318014412::1700757846::0::1::::<><>::uid://bsr2s118o32a8::::res://GAME/MISC/VFX/teleportation/AC_Digital_Chime_Magical_01.wav<>uid://c5q5wbw4sdvpv::::res://GAME/MISC/VFX/teleportation/AC_Digital_Chime_Magical_02.wav
-::res://ICON/::1701660498
-dungeon_icon.svg::CompressedTexture2D::4381306868462351244::1700490778::1701660498::1::::<><>::
+teleportation.tscn::PackedScene::7959979808318014412::1700757846::0::1::::<><>::uid://bsr2s118o32a8
+::res://ICON/::1701669217
+dungeon_icon.svg::CompressedTexture2D::4381306868462351244::1701667597::1701669217::1::::<><>::
 happy.png::CompressedTexture2D::4484910030722386833::1700609543::1701660498::1::::<><>::
 happy.svg::CompressedTexture2D::429673465262215659::1700610970::1701660498::1::::<><>::
 icon_16.png::CompressedTexture2D::7788405181047780982::1700489273::1701660498::1::::<><>::
@@ -429,20 +430,23 @@ icon_192.png::CompressedTexture2D::2276379174794551752::1700489200::1701660498::
 icon_256.png::CompressedTexture2D::1896318793219880343::1700489181::1701660498::1::::<><>::
 icon_384.png::CompressedTexture2D::3722352775492474688::1700489191::1701660498::1::::<><>::
 icon_512.png::CompressedTexture2D::7350389997268472577::1700489173::1701660498::1::::<><>::
+::res://ICON/DISCORD/::1701670011
+github_ubl.png::CompressedTexture2D::5108487475974428288::1701669253::1701670011::1::::<><>::
+github_ubl.svg::CompressedTexture2D::4145720846420602832::1701669244::1701670011::1::::<><>::
+UBL.svg::CompressedTexture2D::7487747320354916167::1701668042::1701669217::1::::<><>::
 ::res://MISC/::1700788181
 ::res://MISC/SAVE_SYSTEM/::1700791158
 save_system.gd::GDScript::-1::1700791158::0::1::::<>Node<>::
-::res://MISC/SYSTEME_DIALOGUE/::1701460357
+::res://MISC/SYSTEME_DIALOGUE/::1704309852
 conversation.gd::GDScript::-1::1701460357::0::1::::Conversation<>Resource<>::
-DialogueManager.gd::GDScript::-1::1701189779::0::1::::<>Node<>::
+DialogueManager.gd::GDScript::-1::1704309852::0::1::::<>Node<>::
 DialogueManager.tscn::PackedScene::2048289617143954176::1701460168::0::1::::<><>::res://MISC/SYSTEME_DIALOGUE/DialogueManager.gd
 Line.gd::GDScript::-1::1701371595::0::1::::DialogLine<>Resource<>::
-PNJ.gd::GDScript::-1::1701286455::0::1::::<>CharacterBody2D<>::
+PNJ.gd::GDScript::-1::1703981844::0::1::::<>CharacterBody2D<>::
 Speaker.gd::GDScript::-1::1701460232::0::1::::SpeakerInfo<>Resource<>::
-test_conv.tres::Resource/Conversation::3372161688114892257::1700787238::0::1::::<><>::res://MISC/SYSTEME_DIALOGUE/CONDITIONTRACKER/condition_tracker.gd<>res://MISC/SYSTEME_DIALOGUE/CONDITIONTRACKER/condition.gd<>res://MISC/SYSTEME_DIALOGUE/conversation.gd
-::res://MISC/SYSTEME_DIALOGUE/BULLES/::1701460167
-bulle_dialogue.tscn::PackedScene::3077188380821004159::1701460167::0::1::::<><>::uid://b3ue6jyjftt70::::res://MISC/UI/FONTS/comic-sans-ms-font-family/design.graffiti.comicsansmsgras.ttf<>uid://c6apg4mpx81sb::::res://MISC/UI/FONTS/comic-sans-ms-font-family/design.graffiti.comicsansms.ttf<>uid://k2n0s1p1xvk7::::res://GAME/INTRO/AC_Bouncy_Bubble_01v1.wav
-::res://MISC/UI/::1700487994
+::res://MISC/SYSTEME_DIALOGUE/BULLES/::1702328978
+bulle_dialogue.tscn::PackedScene::3077188380821004159::1702328978::0::1::::<><>::uid://b3ue6jyjftt70
+::res://MISC/UI/::1702327705
 ::res://MISC/UI/FONTS/::1700511667
 ::res://MISC/UI/FONTS/comic-sans-ms-font-family/::1701660495
 COMIC.TTF::FontFile::4566348774573902658::1446742488::1701660495::1::::<><>::
@@ -452,3 +456,6 @@ comicz.ttf::FontFile::8023067509079325307::1446742488::1701660495::1::::<><>::
 design.graffiti.comicsansms.ttf::FontFile::6949618532248534309::1444055376::1701660495::1::::<><>::
 design.graffiti.comicsansmsgras.ttf::FontFile::4393294598423148589::1444055376::1701660495::1::::<><>::
 myfontsfree.txt::TextFile::-1::1447520954::0::1::::<><>::
+::res://MISC/UI/ICONS/::1702328213
+see.svg::CompressedTexture2D::1852177448134471806::1702328203::1702328213::1::::<><>::
+unsee.svg::CompressedTexture2D::8868893434197147518::1702328076::1702328213::1::::<><>::

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bb5c27jb48aq3"]
+[gd_scene load_steps=8 format=3 uid="uid://bb5c27jb48aq3"]
 
 [ext_resource type="Texture2D" uid="uid://b33p0327m5nru" path="res://GAME/INTRO/ENTITIES/PLAYER/head.svg" id="1_bmox5"]
 [ext_resource type="Texture2D" uid="uid://iopdpodvoc6" path="res://GAME/INTRO/ENTITIES/PLAYER/foot.svg" id="2_f8hy4"]
 [ext_resource type="FontFile" uid="uid://b3ue6jyjftt70" path="res://MISC/UI/FONTS/comic-sans-ms-font-family/design.graffiti.comicsansmsgras.ttf" id="2_s8rk4"]
+[ext_resource type="Texture2D" uid="uid://g3jqwxrrhfbp" path="res://ICON/icon_64.png" id="2_uvu1w"]
 
 [sub_resource type="GDScript" id="GDScript_6l2an"]
 script/source = "extends PlatformerCharacter2D
@@ -38,6 +39,9 @@ func teleport(to_pos:Vector2):
 radius = 32.0
 height = 96.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wf05m"]
+size = Vector2(64, 64)
+
 [node name="Blabla" type="CharacterBody2D" groups=["player"]]
 floor_constant_speed = true
 floor_snap_length = 8.0
@@ -48,35 +52,44 @@ max_jump_height = 2.0
 jump_duration = 0.4
 
 [node name="Node2D" type="Node2D" parent="."]
-position = Vector2(0, -16)
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+visible = false
 texture = ExtResource("1_bmox5")
 
+[node name="Sprite2D4" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("2_uvu1w")
+
 [node name="Sprite2D2" type="Sprite2D" parent="Node2D"]
+visible = false
 modulate = Color(0.580392, 0.580392, 0.580392, 1)
 position = Vector2(11, 50)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_f8hy4")
 
 [node name="Sprite2D3" type="Sprite2D" parent="Node2D"]
+visible = false
 position = Vector2(-11.5, 54)
 texture = ExtResource("2_f8hy4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_feccd")
+disabled = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wf05m")
 
 [node name="Label" type="Label" parent="."]
 offset_left = -112.0
-offset_top = -96.0
+offset_top = -72.0
 offset_right = 111.0
-offset_bottom = -59.0
+offset_bottom = -35.0
 pivot_offset = Vector2(111, 12)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("2_s8rk4")
 theme_override_font_sizes/font_size = 24
-text = "Inconnu"
+text = "Pseudonyme"
 horizontal_alignment = 1
 vertical_alignment = 1

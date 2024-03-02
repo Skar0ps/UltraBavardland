@@ -13,15 +13,15 @@ var twn : Tween
 @onready var timer : Timer = $bubble_duration
 @onready var pop = $pop
 
-func set_text(text:String,centered:bool=true):
+func set_text(text:String,centered:bool=true,show:bool=true):
 	if centered:
 		textbox.text = \"[center]\"+text+\"[/center]\"
 	else:
 		textbox.text = text
+	if show:display()
 
 func display(time:float=5.0):
 	visible = true
-	textbox.position.x = remap(textbox.global_position.x,0,1920-textbox.size.x,-24,-232)
 	pop.play()
 	if time > 0:
 		timer.wait_time = time
@@ -54,6 +54,7 @@ corner_radius_bottom_left = 4
 corner_detail = 1
 
 [node name="Bulle" type="Node2D"]
+scale = Vector2(1e-05, 1e-05)
 script = SubResource("GDScript_1vteo")
 
 [node name="textbox" type="RichTextLabel" parent="."]
@@ -80,6 +81,7 @@ theme_override_font_sizes/mono_font_size = 24
 theme_override_styles/focus = SubResource("StyleBoxEmpty_3j5md")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_3j5md")
 bbcode_enabled = true
+text = "Bulle de dialogue !"
 fit_content = true
 
 [node name="bg" type="Panel" parent="textbox"]

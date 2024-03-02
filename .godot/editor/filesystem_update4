@@ -1,1 +1,3 @@
 res://GAME/INTRO/UltraBavardland.tscn
+res://ConversationArea.gd
+res://MISC/SYSTEME_DIALOGUE/DialogueManager.gd
